@@ -76,6 +76,12 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TaskQueue.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TaskQueue.h" />
+    <ClInclude Include="ThreadPool.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
