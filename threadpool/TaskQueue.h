@@ -3,34 +3,36 @@
 #include<pthread.h>
 // 定义任务结构体
 using callback = void(*)(void*);
+template<typename T>
 struct Task
 {
-    Task()
+    Task<T>()
     {
         function = nullptr;
         arg = nullptr;
     }
-    Task(callback f, void* arg)
+    Task<T>(callback f, void* arg)
     {
         function = f;
-        this->arg = arg;
+        this->arg = (T*)arg;
     }
     callback function;
-    void* arg;
+    T* arg;
 };
+template<typename T>
 class TaskQueue
 {
 public:
     TaskQueue();
     ~TaskQueue();
-    void addTask(Task task);
+    void addTask(Task<T> task);
     void addTask(callback f, void* arg);
-    Task takeTask();
-    inline int taskNumber() {
+    Task<T> takeTask();
+    inline size_t taskNumber() {
         return m_taskQ.size();
     }
 private:
     pthread_mutex_t m_mutex;
-    std::queue<Task>m_taskQ;
+    std::queue<Task<T>>m_taskQ;
 };
 

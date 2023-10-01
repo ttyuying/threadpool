@@ -1,11 +1,13 @@
 #pragma once
 #include"TaskQueue.h"
+#include"TaskQueue.cpp"
+template<typename T>
 class ThreadPool
 {
 public:
 	ThreadPool(int min ,int max);
 	~ThreadPool();
-	void addTask(Task task);
+	void addTask(Task<T> task);
 	int getBusyNum();//获取线程池中工作的线程个数
 	int getAliveNum();//获取线程池中活着的线程个数
 private:
@@ -13,7 +15,7 @@ private:
 	static void* manager(void* arg);//管理者线程任务函数
 	void ThreadExit();//单个线程退出
 private:
-	TaskQueue* taskQ;
+	TaskQueue<T>* taskQ;
 	pthread_t managerID;//管理者线程id
 	pthread_t* threadIDs;//工作的线程id
 	int minNum;//最小线程数量
@@ -25,5 +27,6 @@ private:
 	//pthread_cond_t notFull;//任务队列是不是满了
 	pthread_cond_t notEmpty;//任务队列是不是空了
 	bool shutdown;//是否销毁线程池 1：销毁 ，0：不销毁
+	static const int NUMBER = 2;
 };
 
