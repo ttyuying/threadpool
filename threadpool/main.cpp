@@ -1,7 +1,7 @@
 
 #include"ThreadPool.h"
 #include"ThreadPool.cpp"
-#include<unistd.h>
+#include <unistd.h>
 #include<stdio.h>
 #include<iostream>
 void taskFunc(void* arg)
@@ -9,7 +9,7 @@ void taskFunc(void* arg)
     int num = *(int*)arg;
     printf("thread %ld is working, number = %d\n",
         pthread_self(), num);
-    sleep(1);
+    sleep(3);
 }
 
 int main()

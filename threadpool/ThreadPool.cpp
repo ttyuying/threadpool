@@ -2,7 +2,7 @@
 #include<iostream>
 #include<string.h>
 #include<string>
-#include <sys/types.h>
+#include <unistd.h>
 using namespace std;
 template<typename T>
 ThreadPool<T>::ThreadPool(int min, int max)
